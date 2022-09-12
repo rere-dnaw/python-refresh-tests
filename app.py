@@ -22,17 +22,12 @@
 #     app.run(debug=True)
 
 from post import Post
+from blog import Blog
 from datetime import datetime
 
-date = datetime.now()
-p = Post('Test', 'Testing Content', date)
-print(p.__repr__)
-expected = f'<bound method Post.__repr__ of Post<0,Test,{date},Testing Content>>'
-print(expected)
+b = Blog("Cars", "Tom Don")
+
+#b.posts.append(Post('Fiat New', 'New content info.'))
 
 
-posts1 = Post.add_post("Test Post", "This is my awsome text.")
-posts2 = Post.add_post("Test Post2", "This is my awsome text.")
-print(posts1)
-print(posts2.__repr__)
-
+print(b.json())

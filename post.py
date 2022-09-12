@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import datetime
 import statics
 
 class Post:
@@ -34,6 +34,6 @@ class Post:
                 }        
 
     @classmethod
-    def add_post(cls, title, content):
+    def create_post(cls: 'Post', title: str, content: str) -> 'Post':
         return cls(title, content, datetime.now())
 
