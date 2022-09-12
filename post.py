@@ -34,6 +34,6 @@ class Post:
                 }        
 
     @classmethod
-    def create_post(cls: 'Post', title: str, content: str) -> 'Post':
-        return cls(title, content, datetime.now())
+    def create_post(cls: 'Post', title: str, content: str, date: datetime = datetime.now()) -> 'Post':
+        return cls(title, content, date)
 

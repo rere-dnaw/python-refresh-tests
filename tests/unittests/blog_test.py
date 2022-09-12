@@ -6,6 +6,7 @@ class BlogTest(unittest.TestCase):
     def test_create_blog(self):
         b = Blog("Cars", "Tom Don")
 
+        self.assertEqual(0, b.blogID)
         self.assertEqual("Cars", b.title)
         self.assertEqual("Tom Don", b.author)
         self.assertListEqual([], b.posts)
@@ -13,7 +14,7 @@ class BlogTest(unittest.TestCase):
     def test_repr(self):
         b = Blog("Cars", "Tom Don")
 
-        expected = f"Blog<Cars, Tom Don, 0 Post>"
+        expected = f"Blog<3, Cars, Tom Don, 0 Post>"
 
         self.assertEqual(expected, b.__repr__())
 
@@ -21,29 +22,31 @@ class BlogTest(unittest.TestCase):
         b = Blog("Cars", "Tom Don")
         b.posts = ['post1', 'post2']
 
-        expected = f"Blog<Cars, Tom Don, 2 Post>"
+        expected = f"Blog<4, Cars, Tom Don, 2 Post>"
 
         self.assertEqual(expected, b.__repr__())
 
     def test_str(self):
         b = Blog("Cars", "Tom Don")
 
-        expected = f"Blog<Cars, Tom Don, 0 Post>"
+        expected = f"ID: 5, Title: Cars, Author: Tom Don, Posts: 0"
 
-        self.assertEqual(expected, b.__repr__())
+
+        self.assertEqual(expected, b.__str__())
     
     def test_str_multiple(self):
         b = Blog("Cars", "Tom Don")
         b.posts = ['post1', 'post2']
 
-        expected = f"Blog<Cars, Tom Don, 2 Post>"
+        expected = f"ID: 6, Title: Cars, Author: Tom Don, Posts: 2"
 
-        self.assertEqual(expected, b.__repr__())
+        self.assertEqual(expected, b.__str__())
 
     def test_json(self):
         b = Blog("Cars", "Tom Don")
 
-        expected = {"title": "Cars",
+        expected = {"ID": 2,
+                    "title": "Cars",
                     "author": "Tom Don",
                     "posts": [],}
 
