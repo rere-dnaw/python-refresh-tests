@@ -3,44 +3,35 @@ from post import Post
 from datetime import datetime
 
 class PostTest(unittest.TestCase):
-    def test_create_post(self):
-        date = datetime.now()
-        p = Post('Test', 'Testing Content', date)
+    def setUp(self) -> None:
+        self.date = datetime.now()
+        self.p = Post('Test', 'Testing Content', self.date)
+        self.p2 = Post.create_post('Test', 'Testing Content', self.date)
 
-        self.assertEqual('Test', p.title)
-        self.assertEqual('Testing Content', p.content)
-        self.assertEqual(date, p.date)
-        self.assertEqual(p.postID, 0)
+    def test_create_post(self):
+        self.assertEqual('Test', self.p.title)
+        self.assertEqual('Testing Content', self.p.content)
+        self.assertEqual(self.date, self.p.date)
+        self.assertEqual(self.p.postID, 0)
     
     def test_create_post_class(self):
-        date = datetime.now()
-        p = Post.create_post('Test', 'Testing Content', date)
-
-        self.assertEqual('Test', p.title)
-        self.assertEqual('Testing Content', p.content)
-        self.assertEqual(date, p.date)
-        self.assertEqual(p.postID, 1)
+        self.assertEqual('Test', self.p2.title)
+        self.assertEqual('Testing Content', self.p2.content)
+        self.assertEqual(self.date, self.p2.date)
+        self.assertEqual(self.p2.postID, 3)
 
     def test_json(self):
-        date = datetime.now()
-        p = Post('Test', 'Testing Content', date)
+        expected = {'ID':4, 'Title':'Test',
+                    'Date':self.date, 'Content':'Testing Content'}
 
-        expected = {'ID':2, 'Title':'Test',
-                    'Date':date, 'Content':'Testing Content'}
-
-        self.assertDictEqual(expected, p.json())
+        self.assertDictEqual(expected, self.p.json())
 
     def test_repr(self):
-        date = datetime.now()
-        p = Post('Test', 'Testing Content', date)
-
-        expected = f'Post<3,Test,{date},Testing Content>'
-        self.assertEqual(expected, p.__repr__())
+        expected = f'Post<6,Test,{self.date},Testing Content>'
+        self.assertEqual(expected, self.p.__repr__())
 
     def test_str(self):
-        date = datetime.now()
-        p = Post('Test Post', 'This is my awsome text.', date)
-        date_format = date.strftime("%d/%m/%Y %H:%M:%S")
+        date_format = self.date.strftime("%d/%m/%Y %H:%M:%S")
 
-        expected = f"ID: 4, Title: Test Post, Date: {date_format}\nPost content:\nThis is my awsome text.\n"
-        self.assertEqual(expected, p.__str__())
+        expected = f"ID: 8, Title: Test, Date: {date_format}\nPost content:\nTesting Content\n"
+        self.assertEqual(expected, self.p.__str__())

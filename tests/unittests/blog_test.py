@@ -6,7 +6,7 @@ class BlogTest(unittest.TestCase):
     def test_create_blog(self):
         b = Blog("Cars", "Tom Don")
 
-        self.assertEqual(0, b.blogID)
+        self.assertEqual(3, b.blogID)
         self.assertEqual("Cars", b.title)
         self.assertEqual("Tom Don", b.author)
         self.assertListEqual([], b.posts)
@@ -29,7 +29,7 @@ class BlogTest(unittest.TestCase):
     def test_str(self):
         b = Blog("Cars", "Tom Don")
 
-        expected = f"ID: 5, Title: Cars, Author: Tom Don, Posts: 0"
+        expected = f"Title: Cars, Author: Tom Don, Posts: 0"
 
 
         self.assertEqual(expected, b.__str__())
@@ -38,7 +38,7 @@ class BlogTest(unittest.TestCase):
         b = Blog("Cars", "Tom Don")
         b.posts = ['post1', 'post2']
 
-        expected = f"ID: 6, Title: Cars, Author: Tom Don, Posts: 2"
+        expected = f"Title: Cars, Author: Tom Don, Posts: 2"
 
         self.assertEqual(expected, b.__str__())
 

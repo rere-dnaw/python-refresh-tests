@@ -17,7 +17,7 @@ class Blog:
 
     
     def __str__(self) -> str:
-        return f"ID: {self.blogID}, Title: {self.title}, Author: {self.author}, Posts: {len(self.posts)}"
+        return f"Title: {self.title}, Author: {self.author}, Posts: {len(self.posts)}"
 
     def __repr__(self) -> str:
         return f"Blog<{self.blogID}, {self.title}, {self.author}, {len(self.posts)} Post>"
