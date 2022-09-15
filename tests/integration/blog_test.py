@@ -1,6 +1,7 @@
 import unittest
-from blog import Blog
+from my_app.blog import Blog
 from datetime import datetime
+
 
 class BlogTest(unittest.TestCase):
     def test_create_post(self):
@@ -20,10 +21,9 @@ class BlogTest(unittest.TestCase):
         expected = {"ID": 1,
                     "title": "Cars",
                     "author": "Tom Don",
-                    "posts": [{'ID': 1, 
+                    "posts": [{'ID': 1,
                                'Title': 'Fiat',
-                               'Date':date,
-                               'Content':"It's a average car"}],}
-  
+                               'Date': date,
+                               'Content': "It's a average car"}], }
 
-        self.assertDictEqual(expected, b2.json())        
+        self.assertDictEqual(expected, b2.json())
