@@ -6,7 +6,7 @@ class BlogTest(unittest.TestCase):
     def test_create_blog(self):
         b = Blog("Cars", "Tom Don")
 
-        self.assertEqual(0, b.blogID)
+        self.assertEqual(2, b.blogID)
         self.assertEqual("Cars", b.title)
         self.assertEqual("Tom Don", b.author)
         self.assertListEqual([], b.posts)
@@ -14,7 +14,7 @@ class BlogTest(unittest.TestCase):
     def test_repr(self):
         b = Blog("Cars", "Tom Don")
 
-        expected = "Blog<3, Cars, Tom Don, 0 Post>"
+        expected = "Blog<5, Cars, Tom Don, 0 Post>"
 
         self.assertEqual(expected, b.__repr__())
 
@@ -22,7 +22,7 @@ class BlogTest(unittest.TestCase):
         b = Blog("Cars", "Tom Don")
         b.posts = ['post1', 'post2']
 
-        expected = "Blog<4, Cars, Tom Don, 2 Post>"
+        expected = "Blog<6, Cars, Tom Don, 2 Post>"
 
         self.assertEqual(expected, b.__repr__())
 
@@ -44,7 +44,7 @@ class BlogTest(unittest.TestCase):
     def test_json(self):
         b = Blog("Cars", "Tom Don")
 
-        expected = {"ID": 2,
+        expected = {"ID": 4,
                     "title": "Cars",
                     "author": "Tom Don",
                     "posts": [], }

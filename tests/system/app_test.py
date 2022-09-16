@@ -1,28 +1,28 @@
-from unittest import TestCase
+import unittest
 
 from unittest.mock import patch
 import my_app.app as app
+import my_app.statics.lang_eng as lang_str
 
 
-class AppTest(TestCase):
+class AppTest(unittest.TestCase):
     def test_list_blogs(self):
         with patch('builtins.print') as mocked_print:
             app.list_blogs()
             mocked_print.assert_called_with("Blog list empty!\n")
 
     def test_menu(self):
-        with patch('builtins.ord') as mocked_input:
-            with patch('builtins.input'):
+        with patch('builtins.ord') as mocked_ord:
+            mocked_ord.return_value = 52
+            with patch('builtins.input') as mocker_input:
                 app.menu()
-                mocked_input.assert_called_with()
+                mocker_input.assert_called_with(lang_str.MAIN_MENU_OPT)
 
-    # def test_list_blogs_one(self):
-    #     b = Blog("Cars", "Tom Don",)
-
-    #     with patch('builtins.print') as mocked_print:
-    #         app.list_blogs([b])
-    #         mocked_print.assert_called_with("Type blog number to select (Press 'b' to go back.): ")
-
-# will run all the tests
-# if __name__ == "main":
-#     unittest.main()
+    # def test_menu_list_blog(self):
+    #     with patch('builtins.ord') as mocked_ord:
+    #         with patch('builtins.input') as mocked_input:
+    #             with patch('app.list_blogs') as mocker_app_list:
+    #                 mocked_ord.return_value = 49
+    #                 mocked_input.return_value = '1'
+    #                 app.menu()
+    #                 mocker_app_list.assert_called()

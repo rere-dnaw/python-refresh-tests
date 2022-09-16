@@ -66,22 +66,19 @@ def add_post():
 
 
 def menu():
-    option = 0
-    # option = ord(input(lang_str.MAIN_MENU_OPT))
+    option = ord(input(lang_str.MAIN_MENU_OPT))
 
-    while True:
-        option = ord(input(lang_str.MAIN_MENU_OPT))
-        print('\n')
+    while option != 52:
         if option == 49:
             list_blogs()
         elif option == 50:
             add_blog()
         elif option == 51:
             add_post()
-        elif option == 52:
-            break
         else:
             continue
+        option = ord(input(lang_str.MAIN_MENU_OPT))
 
 
 blogs = []
+# menu()
